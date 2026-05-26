@@ -59,6 +59,7 @@ namespace Celeste.Mod.SantasGifts24.Code.Cutscenes
         {
             if (!didntHappen)
             {
+                Leader.StoreStrawberries(this.player.Leader);
                 level.Remove(player);
                 level.UnloadLevel();
                 level.Session.Dreaming = false;
@@ -67,6 +68,7 @@ namespace Celeste.Mod.SantasGifts24.Code.Cutscenes
                 level.LoadLevel(Player.IntroTypes.None, false);
                 level.Session.SetFlag("end_fade", true);
                 level.Session.SetFlag("cs_fadeout", false);
+                Leader.RestoreStrawberries(level.Tracker.GetEntity<Player>().Leader);
                 if (WasSkipped)
                 {
                     level.SnapColorGrade("none");
